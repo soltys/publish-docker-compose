@@ -14,7 +14,7 @@ inputs:
     description: "docker-compose file to build and publish images from"
     required: true
   repo_token:
-    description: "Github Repo token"
+    description: "Github Repository token"
     required: false
     default: ''
 outputs:
