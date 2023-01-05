@@ -8,7 +8,7 @@ echo "DOCKER_COMPOSE=$DOCKER_COMPOSE"
 
 docker login ghcr.io -u "${GITHUB_REF}" -p "${REPO_TOKEN}"
 
-VERSION=$VERSION docker-compose -f "$DOCKER_COMPOSE" up --no-start --remove-orphans
+VERSION=$VERSION docker-compose -f "$DOCKER_COMPOSE" build
 IMAGES=$(docker inspect --format='{{.Image}}' "$(docker ps -aq)")
 
 echo "IMAGES: $IMAGES"
