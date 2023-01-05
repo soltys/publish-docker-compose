@@ -32,7 +32,7 @@ runs:
             VERSION=$(${{ github.action_path }}/src/version.sh)
         fi
         echo "VERSION: $VERSION"
-        echo "::set-output name=semver::$(echo $VERSION)"
+        echo "semver=$(echo $VERSION) >> $GITHUB_OUTPUT"
         echo "VERSION=$VERSION" >> $GITHUB_ENV
       shell: bash
     - id: publish
