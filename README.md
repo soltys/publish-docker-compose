@@ -1,24 +1,28 @@
-# Docker-Compose Publish
+# Docker Compose Publish to GitHub Packages
 
-A GitHub Action that builds and publishes containers from docker-compose file to the current github repository
+A GitHub Action that builds and publishes containers from docker-compose file to the current github packages
+
+## Fork notice
+
+This repository is fork from [pennsignals/publish_docker-compose](https://github.com/pennsignals/publish_docker-compose)
 
 ## Features
 
 No need to manually build and publish each dockerfile. Simply publish the files that you are using.
 
-Automatically publishes images to github repo
+Automatically publishes images to github repository
 
-Each dockerfile target must have a `LABEL name="<name>"`. This is used to name the published file
+Each service in `docker-compose.yml` must have set `image` property like `ghcr.io/USERNAME/YOUR_IMAGE_NAME`.
 
 If version is blank (recommended), the release tag version is used.
 
 ## Example Usage
 ```
     - name: publish
-      uses: pennsignals/publish_docker-compose@v0.1.0
+      uses: soltys/publish-docker-compose@v1.0.0
       with:
-        version: '0.2.6-rc.1' # optional
-        docker_compose: 'docker-compose.build.yml' # required
+        version: 'latest'
+        docker_compose: 'docker-compose.build.yml'
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
 ```
 
@@ -30,7 +34,6 @@ Below is a breakdown of the expected action inputs.
 
 Tag to be published
 
-
 ### `docker_compose`
 
 docker-compose file to use
@@ -39,29 +42,4 @@ docker-compose file to use
 
 repository token: ${{ secrets.GITHUB_TOKEN }}
 
-## Docker-compose file
-```
-# docker-compose.build.yml
-
-version: "3.8"
-
-services:
-
-  postgres:
-    build:
-      context: ./postgres
-      target: postgres
-
-  predict:
-    build:
-      context: .
-      dockerfile: predict/dockerfile
-      target: predict
-
-  predict.jupyter:
-    build:
-      context: .
-      dockerfile: ./predict/dockerfile
-      target: predict.jupyter
-```
 
