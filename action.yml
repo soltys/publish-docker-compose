@@ -3,7 +3,7 @@ name: "Docker-Compose GitHub Packages Publish"
 author: "Paweł Sołtysiak"
 description: "Publish all docker containers in docker-compose file"
 branding:
-  icon: "packages"
+  icon: "package"
   color: "gray-dark"
 inputs:
   version:
