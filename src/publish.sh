@@ -8,6 +8,6 @@ echo "DOCKER_COMPOSE=$DOCKER_COMPOSE"
 
 docker login ghcr.io -u "${GITHUB_REF}" -p "${REPO_TOKEN}"
 
-VERSION=$VERSION docker-compose -f "$DOCKER_COMPOSE" build
+VERSION=$VERSION docker compose -f "$DOCKER_COMPOSE" build
 
-VERSION=$VERSION docker-compose -f "$DOCKER_COMPOSE" push
+VERSION=$VERSION docker compose -f "$DOCKER_COMPOSE" push
